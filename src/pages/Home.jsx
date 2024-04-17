@@ -30,7 +30,7 @@ const Home = () => {
         <Container>
           <div className="flex flex-wrap">
             <div className="p-2 w-full">
-              <h1 className="text-2xl font-bold hover:text-gray-500">
+              <h1 className="text-2xl font-bold hover:text-gray-200">
                 Login to read posts
               </h1>
             </div>
@@ -43,7 +43,7 @@ const Home = () => {
   return (
     <div className="w-full py-8">
       {loading && (
-        <div className="mt-4 text-center text-2xl font-bold hover:text-gray-500">
+        <div className="mt-4 text-center text-2xl font-bold hover:text-white">
           Loading please wait...{" "}
         </div>
       )}

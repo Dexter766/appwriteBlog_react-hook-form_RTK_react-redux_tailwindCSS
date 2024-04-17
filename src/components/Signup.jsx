@@ -32,7 +32,7 @@ const Signup = () => {
         className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}
       >
         <div className="mb-2 justify-center flex">
-          <span className="inline-block w-full max-w-[100px] bg-blue-500 rounded-lg p-1.5">
+          <span className="inline-block w-full max-w-[100px] bg-gray-800/90 rounded-lg p-1.5">
             <Logo width="100%" />
           </span>
         </div>

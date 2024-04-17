@@ -38,7 +38,7 @@ function App() {
   return (
     <>
       {loading && <div>Loading please wait... </div>}
-      <div className="min-h-screen flex flex-wrap content-between bg-blue-500/50">
+      <div className="min-h-screen flex flex-wrap content-between bg-gray-600/80">
         <div className="w-full block">
           <Header />
           <main>
