@@ -15,7 +15,14 @@ const postSlice = createSlice({
     updatePost: (state, action) => {
       const { dbPost, data } = action.payload;
       state.posts = state.posts.map((p) =>
-        p.$id === dbPost.$id ? { $id: dbPost.$id, ...data } : p
+        p.$id === dbPost.$id
+          ? {
+              $id: dbPost.$id,
+              // userId: dbPost.userId,
+              // userName: dbPost.userName,
+              ...data,
+            }
+          : p
       );
     },
 

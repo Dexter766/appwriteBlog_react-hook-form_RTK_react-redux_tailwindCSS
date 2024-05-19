@@ -25,7 +25,7 @@ const Post = () => {
         } else navigate("/");
       });
     } else {
-      if (post) setLikes(post.likes);
+      setLikes(post.likes);
     }
   }, [slug, navigate]);
 
@@ -72,7 +72,7 @@ const Post = () => {
   // };
 
   return post ? (
-    <div className="py-8">
+    <div className="py-8 text-white">
       <Container>
         <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
           <img
@@ -80,7 +80,6 @@ const Post = () => {
             alt={post.title}
             className="rounded-xl"
           />
-
           {isAuthor && (
             <div className="absolute right-6 top-6">
               <Link to={`/edit-post/${post.$id}`}>
@@ -93,6 +92,9 @@ const Post = () => {
               </Button>
             </div>
           )}
+        </div>
+        <div className="w-full mb-6">
+          <h1 className="text-2xl font-bold">by {post.userName}</h1>
         </div>
         <div className="w-full mb-6">
           <h1 className="text-2xl font-bold">{post.title}</h1>

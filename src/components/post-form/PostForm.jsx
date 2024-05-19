@@ -23,6 +23,7 @@ const PostForm = ({ post }) => {
   const userData = useSelector((state) => state.auth.userData);
 
   const submit = async (data) => {
+    // console.log(data);
     if (post) {
       const file = data.image[0]
         ? await appwriteService.uploadFile(data.image[0])
@@ -53,12 +54,18 @@ const PostForm = ({ post }) => {
         const dbPost = await appwriteService.createPost({
           ...data,
           userId: userData.$id,
+          userName: userData.name,
         });
         if (dbPost) {
           navigate(`/post/${dbPost.$id}`);
         }
         dispatch(
-          createPost({ ...data, userId: userData.$id, $id: dbPost.$id })
+          createPost({
+            ...data,
+            userId: userData.$id,
+            userName: userData.name,
+            $id: dbPost.$id,
+          })
         );
       }
     }

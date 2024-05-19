@@ -23,8 +23,8 @@ const Home = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  //if(posts.lenght===0 && !loading)
-  if (posts.length === 0 && !loading) {
+  //if(posts.length===0 && !loading)
+  if (posts.length == 0 && !loading) {
     return (
       <div className="w-full py-8 mt-4 text-center">
         <Container>
