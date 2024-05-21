@@ -31,10 +31,6 @@ function App() {
     // });
   }, []);
 
-  // useEffect(() => {
-
-  // }, []);
-
   return (
     <>
       {loading && <div>Loading please wait... </div>}
