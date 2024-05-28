@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import Input from "./Input";
 import Button from "./Button";
+import { useCallback } from "react";
 
 const myDebounce = (fn, delay) => {
   let timer;
@@ -34,7 +35,7 @@ const SearchBar = ({ posts, setSearchResults }) => {
     setSearchResults(results);
   };
 
-  const debounceChange = myDebounce(handleSearchChange, 400);
+  const debounceChange = useCallback(myDebounce(handleSearchChange, 400), []);
 
   return (
     <form className="flex flex-1" onSubmit={handleSubmit}>
