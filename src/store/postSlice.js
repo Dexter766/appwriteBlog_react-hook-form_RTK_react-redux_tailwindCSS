@@ -18,8 +18,8 @@ const postSlice = createSlice({
         p.$id === dbPost.$id
           ? {
               $id: dbPost.$id,
-              // userId: dbPost.userId,
-              // userName: dbPost.userName,
+              userId: dbPost.userId,
+              author: dbPost.author,
               ...data,
             }
           : p

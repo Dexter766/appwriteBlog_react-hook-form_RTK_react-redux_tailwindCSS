@@ -22,7 +22,7 @@ export class Service {
     status,
     likes,
     userId,
-    userName,
+    author,
   }) {
     try {
       return await this.databases.createDocument(
@@ -36,7 +36,7 @@ export class Service {
           status,
           likes,
           userId,
-          userName,
+          author,
         }
       );
     } catch (error) {

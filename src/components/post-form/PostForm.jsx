@@ -54,7 +54,7 @@ const PostForm = ({ post }) => {
         const dbPost = await appwriteService.createPost({
           ...data,
           userId: userData.$id,
-          userName: userData.name,
+          author: userData.name,
         });
         if (dbPost) {
           navigate(`/post/${dbPost.$id}`);
@@ -63,7 +63,7 @@ const PostForm = ({ post }) => {
           createPost({
             ...data,
             userId: userData.$id,
-            userName: userData.name,
+            author: userData.name,
             $id: dbPost.$id,
           })
         );

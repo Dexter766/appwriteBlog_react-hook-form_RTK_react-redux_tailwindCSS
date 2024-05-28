@@ -9,13 +9,19 @@ import { removePost, setPosts } from "../store/postSlice";
 
 const Post = () => {
   // const [post, setPost] = useState(null);
-  const [newlikes, setLikes] = useState(0);
+  const [newlikes, setLikes] = useState();
   const { slug } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const post = useSelector((state) => {
     return state.post.posts.find((post) => post.$id === slug);
   });
+
+  // useEffect(() => {
+  //   if (post) {
+  //     setLikes(post.likes);
+  //   }
+  // }, [post]);
 
   useEffect(() => {
     if (!slug || !post) {
@@ -31,6 +37,8 @@ const Post = () => {
 
   const userData = useSelector((state) => state.auth.userData);
   const isAuthor = post && userData ? post.userId === userData.$id : false;
+  const userId = userData.$id;
+  const userName = post.author;
 
   // useEffect(() => {
   //   if (slug) {
@@ -94,7 +102,7 @@ const Post = () => {
           )}
         </div>
         <div className="w-full mb-6">
-          <h1 className="text-2xl font-bold">by {post.userName}</h1>
+          <h1 className="text-2xl font-bold">by {post.author}</h1>
         </div>
         <div className="w-full mb-6">
           <h1 className="text-2xl font-bold">{post.title}</h1>
@@ -107,7 +115,9 @@ const Post = () => {
           {/* <Button onClick={handleUnlike} className="unlike-button">
             Unlike
           </Button> */}
-          <h4 className="ml-3 text-2xl font-bold">{newlikes} Likes</h4>
+          <h4 className="ml-3 text-2xl font-bold">
+            {newlikes ? newlikes : post.likes} Likes
+          </h4>
         </div>
       </Container>
     </div>

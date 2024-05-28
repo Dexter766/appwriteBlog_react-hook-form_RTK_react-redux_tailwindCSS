@@ -2,41 +2,43 @@ import React, { useEffect, useState } from "react";
 import { Container, PostCard } from "../components";
 import appwriteService from "../appwrite/conf";
 import { useSelector } from "react-redux";
+import SearchBar from "../components/SearchBar";
+import ListPage from "./ListPage";
 
 const AllPosts = () => {
-  const [posts, setPosts] = useState([]);
-
-  // const posts = useSelector((state) => state.post.posts);
+  // const [posts, setPosts] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+  const posts = useSelector((state) => state.post.posts);
+  // // looping through to check if post status is inactive fetch from db
+  // posts.forEach((post) => {post.status === "inactive" && appwriteService.getPosts([]).then((posts) => {if (posts) {dispatch(setPosts(posts.documents));}});});
+  useEffect(() => {
+    if (posts.length === 0) {
+      // for fecthing from dbpost
+      appwriteService.getPosts([]).then((posts) => {
+        if (posts) {
+          dispatch(setPosts(posts.documents));
+        }
+      });
+    }
+  }, []);
 
   // useEffect(() => {
-  //   if (posts.some((post) => post.status === "inactive")) {  // for fecthing from dbpost
+  //   if (posts.length === 0) {
   //     appwriteService.getPosts([]).then((posts) => {
   //       if (posts) {
-  //         dispatch(setPosts(posts.documents));
+  //         setPosts(posts.documents);
   //       }
   //     });
   //   }
   // }, []);
 
-  useEffect(() => {
-    appwriteService.getPosts([]).then((posts) => {
-      if (posts) {
-        setPosts(posts.documents);
-      }
-    });
-  }, []);
-
   return (
     <div className="w-full py-8">
       <Container>
-        <div className="flex flex-wrap">
-          {posts.map((post) => (
-            <div key={post.$id} className="p-2 w-1/4">
-              <PostCard {...post} />
-              {/* we have to spread post to display all posts*/}
-            </div>
-          ))}
-        </div>
+        <SearchBar posts={posts} setSearchResults={setSearchResults} />
+        <ListPage
+          searchResults={searchResults.length > 0 ? searchResults : posts}
+        />
       </Container>
     </div>
   );
